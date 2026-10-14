@@ -1,4 +1,4 @@
-const { withFirefox } = require('./lib/mdriver');
+const { withFirefox, sleep } = require('./lib/mdriver');
 const fs = require('fs');
 function getParams() {
 const testcc = fs.readFileSync('../secs/testcc.txt', 'utf8');
@@ -13,4 +13,6 @@ console.log(firefoxLocation, profileLocation, url);
 withFirefox(2828, profileLocation, async m => {
   await m.go(url);
   console.log(await m.js('return document.title'));
+  console.log("sleeping for 10 seconds");
+  await sleep(10000);
 }, { firefox: firefoxLocation });
