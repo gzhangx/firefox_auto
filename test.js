@@ -2,7 +2,7 @@ const { withFirefox } = require('./lib/mdriver');
 const fs = require('fs');
 function getParams() {
 const testcc = fs.readFileSync('../secs/testcc.txt', 'utf8');
-const testccArray = testcc.split('\n');
+const testccArray = testcc.split(/\r?\n/).map(s => s.trim());
 const firefoxLocation = testccArray[0];
 const profileLocation = testccArray[1];
 const url = testccArray[2];
