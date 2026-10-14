@@ -24,4 +24,5 @@ withFirefox(2828, profileLocation, async m => {
   const cols = ['date', 'description', 'amount', 'status', 'balance'];
   fs.writeFileSync(`temp/transactions_${LAST4}.csv`, [cols.join(','), ...tx.map(t => cols.map(c => csvq(t[c])).join(','))].join('\n') + '\n');
   console.log(`got ${tx.length} transactions` + (tx.length ? `, ${tx[tx.length - 1].date} .. ${tx[0].date}` : ''));
+  await sleep(120000);
 }, { firefox: firefoxLocation });
