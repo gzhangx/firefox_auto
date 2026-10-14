@@ -19,5 +19,5 @@ withFirefox(2828, profileLocation, async m => {
   await sleep(5000);
   console.log('after sign on:', await currentUrl(m));
   console.log("sleeping for 10 seconds");
-  await sleep(10000);
+  await sleep(100000);
 }, { firefox: firefoxLocation });
