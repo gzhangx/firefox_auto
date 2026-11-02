@@ -22,7 +22,9 @@ withFirefox(2828, profileLocation, async m => {
   fs.mkdirSync('temp', { recursive: true });
   fs.writeFileSync(`temp/transactions_${LAST4}.json`, JSON.stringify(tx, null, 1));
   const cols = ['date', 'description', 'amount', 'status', 'balance'];
-  fs.writeFileSync(`temp/transactions_${LAST4}.csv`, [cols.join(','), ...tx.map(t => cols.map(c => csvq(t[c])).join(','))].join('\n') + '\n');
+  const csv = [cols.join(','), ...tx.map(t => cols.map(c => csvq(t[c])).join(','))].join('\n') + '\n';
+  fs.writeFileSync(`temp/transactions_${LAST4}.csv`, csv);
+  console.log(csv);
   console.log(`got ${tx.length} transactions` + (tx.length ? `, ${tx[tx.length - 1].date} .. ${tx[0].date}` : ''));
   await sleep(120000);
 }, { firefox: firefoxLocation });
